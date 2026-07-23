@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Lecta</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div id="error-msg" style="display:none;"></div>
+    <button id="theme-toggle" onclick="toggleTheme()">☀️</button>
+    
+    <div class="container">
+        <h1 class="Title">Lecta</h1>
+        <p id="intro_1" class="intro">Extracts your PDF, generates structured notes, builds quizzes at your level, and answers questions 
+        <p id="intro_2" class="intro">— grounded strictly in your document, nothing else.</p>
+        <p id="intro_3" class="intro">Optimized for lecture notes, textbook chapters, and study guides. </p> 
+        </p>
+        <br>
+        <form id="pdf-form" action="post">
+            <input type="file" 
+                   id="PDF_input"
+                   accept=".pdf"
+                   placeholder="Paste your PDF link here."
+                   name="pdf_reader">
+            <button type="submit" id="submit-btn" class="btn">
+                Extract text.
+            </button>
+        </form>
+        
+        <div id="loader" style="display:none">
+            <img src="{{ url_for('static', filename='animation.gif') }}" 
+                 alt="Loading..." 
+                 id="extraction-anim">
+        </div>
+    </div> <div id="notes-sec" style="display:none">
+        <section id="notes-content">
+            <h2>Generated Notes</h2>
+            <div id="notes-container"></div>
+        </section>
+    </div> <div id="quiz_section" class="quiz_qa_questions">
+        <h2>Quiz Maker</h2>
+        <label for="education">Education level:</label>
+        <select id="education">
+            <option value="pre-junior">Pre-junior</option>
+            <option value="junior">Junior</option>
+            <option value="high-school">High School</option>
+            <option value="college">College</option>
+            <option value="university">University</option>
+        </select>
+        <br><br>
+        
+        <label for="question-type">Quiz Format:</label>
+        <select id="question-type">
+            <option value="mcqs">MCQs</option>
+            <option value="conceptual">Conceptual</option>
+            <option value="comprehensive">Comprehensive</option>
+        </select>
+        <br><br>
+        
+        <label for="num_of_questions">Number of Questions: </label>
+        <input type="number" id="num_of_ques_input" min="1" max="25">
+        <br><br>
+        
+        <button type="button" id="quiz_btn" class="btn">
+            Generate your Quiz
+        </button>
+        
+        <div id="quiz-loader" style="display:none">
+            <img src="{{ url_for('static', filename='quiz_anim.gif') }}" 
+                 alt="Loading..." 
+                 id="quiz-anim">
+        </div>
+        
+        <div id="quiz-output" style="display: none;"></div> 
+        <button id="quiz_submit_btn" class="btn" style="display: none;">Submit answers</button>
+        <div id="quiz-sub-loader" style="display:none">
+            <img src="{{ url_for('static', filename='quiz_submit_anim.gif') }}" 
+                 alt="Loading..." 
+                 id="quiz-submit-anim"></div>
+        <div id = "grading-display"></div>
+        
+    </div> <div id="qa_section">
+        <h2>Q/A AI Chatbot</h2>
+        <input type="text" id="qa-input">
+        <button id="qa-btn" class="btn">submit</button>
+        <div id="qa-loader" style="display:none">
+            <img  src="{{ url_for('static', filename='qa_anim.gif') }}" 
+                 alt="Loading..." 
+                 id="qa-anim">
+        </div>
+        
+        <div id="qa_ans" style="display: none;"></div> 
+    </div> 
+    <!-- KaTeX implementation -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <!-- Text to Markdown Implementation -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- Vanilla JS -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
