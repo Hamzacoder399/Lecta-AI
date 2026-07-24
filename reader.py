@@ -253,7 +253,7 @@ def qa():
             'error': "Gemini API Key or client initialization failed."
         }), 500
         
-        # Giving prompt to Mistral AI
+        # Giving prompt to Gemini/Groq AI
         prompt = (
         "Answer the question of the user based off the notes. Answer in a student-friendly manner. The answer MUST STAY ONLY ACCORDING TO THE QUESTION GIVEN AND NOTHING ELSE. If the user asks questions outside the context provided, refuse. If the answer is not present in the notes, respond with: \"This question is outside the provided material.\" \n\n"
         f"Notes: {notes[:50000]}" "\n" f"Question: {userPrompt[:700]}" # Question should be moderate in length
@@ -367,6 +367,7 @@ Return ONLY a valid JSON array. No markdown, no code fences, no explanations, no
 Each element must strictly follow this shape:
 {json_shape}
 Do not include a "correct_answer" or "model_answer" field with an empty value — always provide the real answer.
+The real answer provided should be carefully reviewed and then provided- not overlooked.
 Notes:
 {notes_gen} """)
         
@@ -466,6 +467,7 @@ Feedback Format:
 - List out weaknesses depending on answers gotten completely wrong or partially correct.
 - List out strengths depending on answers gotten completely right.
 - In bullet points ONLY, list out ways to improve score if score is less than 95 percent.
+- Strengths, weaknesses and advice to improve score must be precise and concise.
 - If score is 95 percent or above- congratulate the user- but advise spaced repitition to maintain score.
 
 Answers submitted by user:
