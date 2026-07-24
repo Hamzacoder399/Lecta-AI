@@ -44,6 +44,7 @@ source .venv/bin/activate # macOS/Linux
 ## Known Limitations
 - Only text-based PDFs are supported — scanned/image-based documents are not (no OCR)
 - Notes generation is capped at 15 chunks per document to manage API usage (depending on document- a 25 to 30 page document can be converted into notes at a time, smaller docs around 5 to 10 pages can be used consecutively but upto a limit).
+- Max prompt limit for Q/A section is 8 prompts.
 - Requires active Gemini and/or Groq API keys to function.
 - Fallback logic keeps the app running under quota pressure, but response quality may vary slightly between the two providers.
 
