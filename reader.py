@@ -184,7 +184,8 @@ def notes():
             prompt = (
                 "Create clear, structured study notes from the text below. "
                 "Only use the provided content. If something is missing, do not guess."
-                "Do NOT include any introductory phrase like 'Here are the notes' — start directly with the content.\n\n"
+                "Do NOT include any introductory phrase like 'Here are the notes' — start directly with the content."
+                "Any mathematical formulas, equations or symbols must be written in LaTeX notation wrapped in $ delimiters for inline math (e.g. $E = mc^2$) or $$ for display equations.\n\n"
                 f"Text:\n{chunk}"
             )
 
